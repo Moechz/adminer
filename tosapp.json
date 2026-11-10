@@ -1,0 +1,94 @@
+{
+  "app_id": "adminerdocker",
+  "title": "Adminer",
+  "image": "adminer:5.4.2",
+  "repo_name": "adminer",
+  "mode": "plain",
+  "container_port": 8080,
+  "category": [
+    "Development_Tools"
+  ],
+  "volumes": [
+    {
+      "host": "/Volume1/DockerAppData/adminerdocker/data",
+      "container": "/data"
+    }
+  ],
+  "env": {
+    "TZ": "Asia/Shanghai"
+  },
+  "auth": "Moechz",
+  "upstream_url": "",
+  "upstream_license": "",
+  "descript": "Adminer packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon.",
+  "release_note": "1. First release.",
+  "important": "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/adminerdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN.",
+  "probe": {
+    "user_in_image": "adminer",
+    "entrypoint": [
+      "entrypoint.sh",
+      "docker-php-entrypoint"
+    ],
+    "cmd": [
+      "php",
+      "-S",
+      "[::]:8080",
+      "-t",
+      "/var/www/html"
+    ],
+    "exposed_ports": [
+      8080
+    ],
+    "declared_volumes": [],
+    "image_healthcheck": [],
+    "digest": "adminer@sha256:983261ecc40a4aaf11e25aeda8ef821f5a43a9f024b3967c81cbcc0e6ce43ba3",
+    "architecture": "x86_64",
+    "platforms": [],
+    "http_client_in_image": "curl",
+    "trial_run": {
+      "ok": true,
+      "http_code": "200",
+      "state": "running",
+      "paths": [
+        "/var"
+      ],
+      "host_port": 18000,
+      "log_tail": "[Tue Nov 10 05:06:48 2026] PHP 8.4.23 Development Server (http://[::]:8080) started\n[Tue Nov 10 05:06:50 2026] [::ffff:172.17.0.1]:37672 Accepted\n[Tue Nov 10 05:06:50 2026] [::ffff:172.17.0.1]:37672 [200]: GET /\n[Tue Nov 10 05:06:50 2026] [::ffff:172.17.0.1]:37672 Closing",
+      "files_in_mounts": ""
+    },
+    "docker_hub": {},
+    "github": {}
+  },
+  "healthcheck": [
+    "CMD-SHELL",
+    "curl -s -o /dev/null http://127.0.0.1:8080/ || exit 1"
+  ],
+  "platform": "x86_64",
+  "user": "1000:1000",
+  "publisher": "Moechz",
+  "compose_project": "adminerdocker",
+  "github_repo": "adminer",
+  "upstream_version": "5.4.2",
+  "release_tag_prefix": "v",
+  "version": "5.4.2-1",
+  "help": "https://github.com/Moechz/adminer/issues",
+  "official": "https://github.com/Moechz/adminer/issues",
+  "license": "see upstream",
+  "docker_socket": false,
+  "group_add": [],
+  "platforms": [
+    "x86_64",
+    "aarch64"
+  ],
+  "translations": {
+    "zh-cn": {
+      "descript": "单文件数据库管理界面，支持 MySQL/PostgreSQL/SQLite。",
+      "important": "首次使用请打开网页完成初始化。数据保存在 DockerAppData/adminerdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+    },
+    "zh-hk": {
+      "descript": "单文件数据库管理界面，支持 MySQL/PostgreSQL/SQLite。",
+      "important": "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/adminerdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+    }
+  },
+  "host_port": 8049
+}
